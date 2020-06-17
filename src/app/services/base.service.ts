@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import { environment } from "@env/environment";
 import { map, catchError } from "rxjs/operators";
 import { throwError } from "rxjs";
@@ -11,22 +11,15 @@ export class BaseService {
   token: string;
 
   constructor(private http: HttpClient) {}
-
-  getToken() {
-    return this.token;
-  }
-
+  
   callAPIs(body, option?) {
-    let req;
-    if (this.token) {
-      req = { ...body, token: this.token };
-    } else {
-      req = { ...body };
+    {
+      let req = { ...body };
+      return this.http.post(environment.api, req, option).pipe(
+        map((res) => res),
+        catchError(this.handleError)
+      );
     }
-    return this.http.post(environment.api, req, option).pipe(
-      map((res) => res),
-      catchError(this.handleError)
-    );
   }
 
   protected handleError(error: any) {
