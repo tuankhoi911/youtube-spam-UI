@@ -12,10 +12,10 @@ export class BaseService {
 
   constructor(private http: HttpClient) {}
 
-  callAPIs(body, option = 'all') {
+  callAPIs(body, option = "all") {
     {
-      let req = { ...body };
-      return this.http.post(`${environment.api}/${option}`, req).pipe(
+      let { comment } = body;
+      return this.http.post(`${environment.api}/${option}`, {comment}).pipe(
         map((res) => res),
         catchError(this.handleError)
       );

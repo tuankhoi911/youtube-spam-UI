@@ -35,11 +35,9 @@ export class HomeComponent implements OnInit {
   constructor(private filterService: FilterService) {}
 
   onSubmit() {
-    let commentObj = this.spamFilterForm.value.comment;
-    let typeAlgorism = this.spamFilterForm.value.algorism;
-
+    let commentObj = this.spamFilterForm.value;
     this.filterService
-      .checkSpam(commentObj, typeAlgorism)
+      .checkSpam(commentObj)
       .subscribe((response) => {
         console.log(response);
 
