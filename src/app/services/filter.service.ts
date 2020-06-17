@@ -1,18 +1,15 @@
-import { Injectable } from '@angular/core';
-import { BaseService } from './base.service';
-import { Observable, of } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { Injectable } from "@angular/core";
+import { BaseService } from "./base.service";
+import { Observable, of } from "rxjs";
+import { map, catchError } from "rxjs/operators";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class FilterService {
+  constructor(private apiService: BaseService) {}
 
-  constructor(private apiService: BaseService) { }
-
-  public checkSpam(): Observable<any> {
-    return this.apiService.callAPIs({
-      req: ''
-    });
+  public checkSpam(commentObj, typeAlgorism): Observable<any> {
+    return this.apiService.callAPIs(commentObj, typeAlgorism).pipe(map((res: any) => res));
   }
 }

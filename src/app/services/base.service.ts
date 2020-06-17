@@ -11,11 +11,11 @@ export class BaseService {
   token: string;
 
   constructor(private http: HttpClient) {}
-  
-  callAPIs(body, option?) {
+
+  callAPIs(body, option = 'all') {
     {
       let req = { ...body };
-      return this.http.post(environment.api, req, option).pipe(
+      return this.http.post(`${environment.api}/${option}`, req).pipe(
         map((res) => res),
         catchError(this.handleError)
       );

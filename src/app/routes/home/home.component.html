@@ -33,15 +33,27 @@
 
 <div class="comment">
   <div class="container">
-    <div class="row">
-      <div class="col-12 text-center">
-        <h1 class="font-weight-bold mb-4">Youtube comment check!</h1>
-        <h4>Check your Youtube comment for spam content, rubbish content, advertisement content or not relevant content about the video!</h4>
-        <textarea placeholder="Typing something..." class="p-2 comment-area w-100" name="content" id="y_content"
-          cols="30" rows="10"></textarea>
-        <button class="btn btn-primary mt-2 w-50"><i class="fas fa-search mr-2"></i>Check</button>
+    <form [formGroup]="spamFilterForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h1 class="font-weight-bold mb-4">Youtube comment check!</h1>
+          <h4>Check your Youtube comment for spam content, rubbish content, advertisement content or not relevant
+            content about the video!</h4>
+          <textarea formControlName="comment" placeholder="Typing something..." class="p-2 comment-area w-100"
+            name="content" id="y_content" cols="30" rows="10"></textarea>
+        </div>
+        <div class="col-6">
+          <label for="select">Algorism:</label>
+          <select class="custom-select w-50 mt-2 float-right" formControlName="algorism">
+            <option *ngFor="let item of algorisms" [value]="item.value">{{item.name}}</option>
+          </select>
+        </div>
+        <div class="col-6">
+          <button type="submit" [disabled]="!spamFilterForm.valid" class="btn btn-primary mt-2 w-50"><i
+              class="fas fa-search mr-2"></i>Check</button>
+        </div>
       </div>
-    </div>
+    </form>
   </div>
 </div>
 
