@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
 
   spamFilterForm = new FormGroup({
     comment: new FormControl(""),
-    algorism: new FormControl(""),
+    algorism: new FormControl("all"),
   });
   constructor(private filterService: FilterService) {}
 
