@@ -49,7 +49,7 @@
           </select>
         </div>
         <div class="col-6">
-          <a href="#result" (click)="onSubmit()" type="submit"  class="btn btn-primary mt-2 w-50"><i
+          <a href="#result" (click)="onSubmit()" type="submit" class="btn btn-primary mt-2 w-50"><i
               class="fas fa-search mr-2"></i>Check</a>
         </div>
       </div>
@@ -61,17 +61,85 @@
 <div class="result my-4 py-4">
   <div class="container">
     <div class="row">
+      <div class="col-12">
+        <h2 class="mb-4"> <i class="fas fa-poll-h"></i> Result</h2>
+      </div>
       <div class="col-lg-6">
-        <h3>Result:</h3>
-        <div class="badge ban-badge">
+        <h4 class="font-weight-bold">
+          General result with all Algorisms
+        </h4>
+        <p>
+          Long short-term memory:
+          <span>
+            {{results?.LTSM}}
+          </span>
+        </p>
+        <p>
+          Native bayes:
+          <span>
+            {{results?.NB}}
+          </span>
+        </p>
+        <p>
+          Support vector machine:
+          <span>
+            {{results?.SVM}}
+          </span>
+        </p>
+      </div>
+      <div class="col-lg-6">
+        <h4 class="font-weight-bold">
+          Result detail with
+          <span *ngIf="algorism == 'lstm'">LSTM</span>
+          <span *ngIf="algorism == 'svm'">SVM</span>
+          <span *ngIf="algorism == 'nb'">NB</span>
+        </h4>
+        <p>
+          Lenmatizer:
+          <span>
+            {{results?.enmatizer}}
+          </span>
+        </p>
+        <p>
+          Standardize:
+          <span>
+            {{results?.standardize}}
+          </span>
+        </p>
+        <p>
+          Tokens:
+          <span>
+            {{results?.tokens}}
+          </span>
+        </p>
+        <p>
+          Vectors:
+          <span>
+            {{results?.vector}}
+          </span>
+        </p>
+      </div>
+      <div class="col-1 icon text-center">
+        <i class="fas fa-eye d-block"></i>
+        <i class="fas fa-bug d-block"></i>
+        <i class="fas fa-virus d-block"></i>
+        <i class="fas fa-spider d-block"></i>
+        <i class="fas fa-carrot d-block"></i>
+      </div>
+      <div class="col-5">
+        <p>
+          A spam filter is a program that is used to detect unsolicited and unwanted email and prevent those messages
+          from getting to a user's inbox. Like other types of filtering programs, a spam filter looks for certain
+          criteria on which it bases judgments.
+        </p>
+      </div>
+      <div *ngIf="result" class="col-6 mt-4">
+        <div *ngIf="result?.Result == 'SPAM'" class="badge ban-badge">
           <i class="fas fa-ban"></i> This comment is spam!
         </div>
-        <hr>
-        <div class="badge verify-badge">
+        <div *ngIf="result?.Result != 'SPAM'" class="badge verify-badge">
           <i class="fas fa-check-circle"></i> This comment is not spam!
         </div>
-
       </div>
     </div>
   </div>
-</div>

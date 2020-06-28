@@ -9,6 +9,7 @@ import { FormControl, FormGroup } from "@angular/forms";
 })
 export class HomeComponent implements OnInit {
   result: any;
+
   algorisms = [
     {
       name: "All model",
@@ -34,15 +35,17 @@ export class HomeComponent implements OnInit {
   });
   constructor(private filterService: FilterService) {}
 
+  get algorism() {
+    return this.spamFilterForm.value.algorism;
+  }
+
   onSubmit() {
     let commentObj = this.spamFilterForm.value;
-    this.filterService
-      .checkSpam(commentObj)
-      .subscribe((response) => {
-        console.log(response);
+    this.filterService.checkSpam(commentObj).subscribe((response) => {
+      console.log(response);
 
-        this.result = response;
-      });
+      this.result = response;
+    });
   }
 
   ngOnInit() {}
